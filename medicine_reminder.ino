@@ -1,3 +1,4 @@
+```cpp
 #include <ESP8266WiFi.h>
 #include <ThingerESP8266.h>
 #include <Wire.h>
@@ -8,8 +9,8 @@
 #include <NTPClient.h>
 
 // Wi-Fi configuration
-#define WIFI_SSID "YOUR_WIFI_NAME"
-#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define WIFI_SSID "IOT"
+#define WIFI_PASSWORD "12345678"
 
 // Thinger.io configuration
 #define THINGER_USERNAME "YOUR_THINGER_USERNAME"
@@ -271,3 +272,4 @@ void showDefaultMessage() {
     lcd.setCursor(0, 1);
     lcd.print("Reminder");
 }
+```
