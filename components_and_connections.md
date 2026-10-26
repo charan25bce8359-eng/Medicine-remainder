@@ -1,33 +1,60 @@
 # Components and Connections
 
-## 1. ESP8266 NodeMCU
+## 1. Components Used
 
-The ESP8266 acts as the main controller. It processes the reminder logic and connects to the Wi-Fi network for cloud communication.
+| Component                 | Purpose                                         |
+| ------------------------- | ----------------------------------------------- |
+| ESP8266 NodeMCU           | Main controller with Wi-Fi connectivity         |
+| 16×2 LCD with I2C adapter | Displays medicine reminder messages             |
+| Four LEDs                 | Indicate the corresponding medicine compartment |
+| Active buzzer             | Provides an audible alert                       |
+| Push button               | Provides an emergency-button input              |
+| Connecting wires          | Connect the electronic components               |
+| USB power supply          | Powers the development board                    |
 
-## 2. LCD Display
+## 2. Pin Mapping
 
-The LCD displays messages about the medicine reminder and device status, if an LCD is installed.
+The following connections are documented in the supplied project documentation. Verify them against the actual hardware before making any wiring changes.
 
-## 3. Buzzer
+| Component        | ESP8266 Pin | GPIO    | Function                     |
+| ---------------- | ----------- | ------- | ---------------------------- |
+| LCD SCL          | D1          | GPIO 5  | I2C clock                    |
+| LCD SDA          | D2          | GPIO 4  | I2C data                     |
+| LED A            | D3          | GPIO 0  | Medicine indicator A         |
+| LED B            | D4          | GPIO 2  | Medicine indicator B         |
+| LED C            | D5          | GPIO 14 | Medicine indicator C         |
+| LED D            | D6          | GPIO 12 | Medicine indicator D         |
+| Emergency button | D7          | GPIO 13 | Button input                 |
+| Active buzzer    | D8          | GPIO 15 | Audible alert                |
+| Common ground    | GND         | GND     | Ground connection            |
+| Positive supply  | Vin         | 5V      | Documented supply connection |
 
-The buzzer provides an audible alert when a scheduled reminder occurs, if connected and programmed.
+## 3. LCD Interface
 
-## 4. LEDs
+The LCD uses an I2C adapter to communicate with the ESP8266 using two signal connections:
 
-LED indicators provide visual alerts or status information, depending on the implemented firmware.
+* SCL: D1
+* SDA: D2
 
-## 5. Push Button
+The source code initializes a 16×2 LCD with I2C address `0x27`.
 
-A push button can be used to acknowledge a reminder, provided this function is supported by the hardware and program.
+## 4. LED Indicators
 
-## 6. Thinger.io
+The source code assigns four LEDs to pins D3, D4, D5 and D6. Each LED represents a medicine compartment.
 
-Thinger.io is the cloud platform used for connected-device monitoring and communication.
+The LEDs should use suitable current-limiting resistors when required by the circuit design.
 
-## 7. Wiring Information
+## 5. Buzzer
 
-The exact GPIO pin numbers and wiring must be recorded from the actual circuit. Do not assume pin assignments without checking the hardware.
+The buzzer is assigned to pin D8 in the source code. It provides an audible indication when the reminder function is triggered.
 
-## 8. Verification
+## 6. Emergency Button
 
-Check every connection against the actual circuit before powering the device. Test each component individually before testing the complete system.
+The emergency button is assigned to pin D7 and configured using `INPUT_PULLUP`.
+
+The documented wiring connects the button between D7 and GND. When pressed, the input reads LOW.
+
+## 7. Safety and Verification
+
+This pin mapping is based on the supplied documentation, not an independent inspection of the circuit. Confirm the actual boa
+
