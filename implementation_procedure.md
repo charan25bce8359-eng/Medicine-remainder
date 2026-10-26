@@ -1,49 +1,59 @@
-# Implementation Procedure
-
-## Project Title
-
-IoT-Based Medicine Reminder Using ESP8266 and Thinger.io
+# IoT-Based Medicine Reminder Using ESP8266, Thinger.io and Telegram
 
 ## 1. Objective
 
-To develop an IoT-based medicine reminder that provides scheduled alerts and supports remote monitoring through the Thinger.io cloud platform.
+To develop an IoT-based medicine reminder system that alerts users when scheduled medication times arrive and provides remote monitoring capabilities.
 
-## 2. Hardware Requirements
+## 2. Hardware Components
 
-* ESP8266 NodeMCU
-* LCD display, if fitted
-* Buzzer, if fitted
-* LEDs, if fitted
-* Push button, if fitted
-* USB cable and suitable power supply
+* ESP8266 NodeMCU development board
+* 16×2 LCD with I2C adapter
+* Four LEDs with current-limiting resistors
+* Active buzzer
+* Push button
+* Connecting wires
+* USB power supply
+* Wi-Fi connection
 
 ## 3. Software Requirements
 
 * Arduino IDE
-* ESP8266 board support package
-* Thinger.io ESP8266 library
-* Thinger.io account
+* ESP8266 board package
+* Thinger.io platform
+* UniversalTelegramBot library
+* ArduinoJson library
+* LiquidCrystal_I2C library
+* NTPClient library
 
-## 4. Implementation Steps
+## 4. System Working Principle
 
-1. Identify the hardware components used in the device.
-2. Install Arduino IDE and configure the appropriate ESP8266 board.
-3. Install the required software libraries.
-4. Register the ESP8266 device on Thinger.io.
-5. Configure the Wi-Fi network and device credentials in the Arduino sketch.
-6. Implement the medicine reminder logic and hardware controls.
-7. Upload the program to the ESP8266.
-8. Test the device connection and reminder functions.
-9. Verify cloud communication using the Thinger.io dashboard.
+The ESP8266 acts as the main controller. It connects to a Wi-Fi network and retrieves the current time from an NTP server.
 
-## 5. Testing
+The system uses the Thinger.io platform to provide cloud resources for configuring medicine reminder times. The LCD displays the medicine reminder, while the corresponding LED and buzzer provide visual and audible alerts.
 
-Test Wi-Fi connectivity, cloud communication, scheduled alerts, and each connected hardware component. Record the actual results.
+The push button is configured as an input using the ESP8266's internal pull-up resistor. The source code also includes a Telegram notification function for emergency alerts.
 
-## 6. Expected Outcome
+## 5. Implementation Procedure
 
-The system is intended to provide medicine reminders and enable remote device monitoring. Actual functionality depends on the implemented firmware and hardware.
+1. Connect the ESP8266 to the required display, LEDs, buzzer and push button according to the circuit diagram.
+2. Install the ESP8266 board package in Arduino IDE.
+3. Install the libraries required by the source code.
+4. Configure the Wi-Fi, Thinger.io and Telegram credentials securely.
+5. Initialize the LCD, GPIO pins and network connections.
+6. Synchronize the system clock using the NTP client.
+7. Configure Thinger.io resources for medicine reminder hours and minutes.
+8. Compare the current time with the configured reminder times.
+9. Activate the corresponding LED and buzzer when a scheduled time matches.
+10. Display the medicine reminder on the LCD.
+11. Use the emergency-button function to send a Telegram message when configured correctly.
+12. Test the hardware and cloud functions individually.
 
-## 7. Project Status
+## 6. Testing and Verification
 
-The implementation must be verified against the actual device before its features can be reported as working.
+The physical device should be tested to confirm that the display, LEDs, buzzer and scheduled reminders operate correctly.
+
+Thinger.io connectivity and Telegram notifications should be tested separately. Successful operation of one feature does not establish that all other features work.
+
+## 7. Conclusion
+
+The project demonstrates an IoT-based approach to medication reminders using an ESP8266, a cloud platform and a notification service. Its functionality depends on correct hardware connections, firmware configuration and network connectivity.
